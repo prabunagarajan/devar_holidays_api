@@ -7,4 +7,5 @@ public interface VehicleNextDateDTO {
 	int getNextInsuranceDate();
 	String getNextTaxDate();
 	int getNextFcDate();
+	
 }
