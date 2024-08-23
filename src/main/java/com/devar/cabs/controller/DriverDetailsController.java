@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devar.cabs.exception.RecordNotFoundException;
 import com.devar.cabs.requestDTO.DriverDetailsRequestDTO;
+import com.devar.cabs.requestDTO.PaginationRequestDTO;
 import com.devar.cabs.service.DriverDetailsService;
 import com.devar.cabs.utility.GenericResponse;
 import com.devar.cabs.utility.ResponseHeaderUtility;
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@RestController 
+@RestController
 @Api(value = "Driver Details", description = "This controller contain all  operation of Driver Details")
 @ApiResponses(value = { @ApiResponse(code = 200, message = "Success"),
 		@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -36,8 +36,8 @@ import io.swagger.annotations.ApiResponses;
 public class DriverDetailsController {
 
 	@Autowired
-	DriverDetailsService driverDetailsService;	
-	
+	DriverDetailsService driverDetailsService;
+
 	@PostMapping("add")
 	@ApiOperation(value = "This api is used to create a new DriverDetails", notes = "Returns HTTP 200 if successful get the record")
 	public GenericResponse createDriverDetails(@RequestBody DriverDetailsRequestDTO driverDetailsRequestDTO) {
@@ -49,18 +49,34 @@ public class DriverDetailsController {
 	public GenericResponse updateG6MasterData(@RequestBody DriverDetailsRequestDTO driverDetailsRequestDTO) {
 		return driverDetailsService.update(driverDetailsRequestDTO);
 	}
-	
+
 	@GetMapping("/getById/{id}")
 	@ApiOperation(value = "This api is to get SiteVisit by id", notes = "Returns HTTP 200 if successful get the record")
 	public ResponseEntity<Object> getById(@PathVariable Long id) {
-	return new ResponseEntity<>(driverDetailsService.getById(id), ResponseHeaderUtility.HttpHeadersConfig(), HttpStatus.OK);
+		return new ResponseEntity<>(driverDetailsService.getById(id), ResponseHeaderUtility.HttpHeadersConfig(),
+				HttpStatus.OK);
 	}
-	
-	 @GetMapping("/getAll")
-		@ApiOperation(value = "This api is to get all SiteVisit list", notes = "Returns HTTP 200 if successful get the record")
-		public ResponseEntity<Object> getAll() {
-			return new ResponseEntity<>(driverDetailsService.getAll(), ResponseHeaderUtility.HttpHeadersConfig(),
-					HttpStatus.OK);
-		}
-	
+
+	@GetMapping("/getAll")
+	@ApiOperation(value = "This api is to get all SiteVisit list", notes = "Returns HTTP 200 if successful get the record")
+	public ResponseEntity<Object> getAll() {
+		return new ResponseEntity<>(driverDetailsService.getAll(), ResponseHeaderUtility.HttpHeadersConfig(),
+				HttpStatus.OK);
+	}
+
+	@PostMapping("/search")
+	@ApiOperation(value = "This api is used to search ticket record using filter", notes = "Returns HTTP 200 if successful get the record")
+	public ResponseEntity<Object> subPagesearchNewByFilter(
+			@Valid @RequestBody PaginationRequestDTO paginationRequestDTO) {
+		return new ResponseEntity<>(driverDetailsService.getsubPagesearchNewByFilter(paginationRequestDTO),
+				ResponseHeaderUtility.HttpHeadersConfig(), HttpStatus.OK);
+	}
+
+	@GetMapping("/active")
+	@ApiOperation(value = "This api is to get all active Asset Types", notes = "Returns HTTP 200 if successful get the record")
+	public ResponseEntity<Object> getAllActive() {
+		return new ResponseEntity<>(driverDetailsService.getAllActive(), ResponseHeaderUtility.HttpHeadersConfig(),
+				HttpStatus.OK);
+	}
+
 }

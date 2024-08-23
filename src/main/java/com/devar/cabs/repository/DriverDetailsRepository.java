@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.devar.cabs.entity.DriverDetailsEntity;
 
+
+
+
 @Repository
 public interface DriverDetailsRepository extends JpaRepository<DriverDetailsEntity, Long>{
 
@@ -18,5 +21,7 @@ public interface DriverDetailsRepository extends JpaRepository<DriverDetailsEnti
 	Optional<DriverDetailsEntity> findByAadharNotInId(String aadharNumber, Long id);
 
 	List<DriverDetailsEntity> findAllByOrderByIdDesc();
+
+	List<DriverDetailsEntity> findByStatusOrderByModifiedDateDesc(Boolean true1);
 
 }
