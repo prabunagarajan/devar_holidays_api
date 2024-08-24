@@ -21,7 +21,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-		<dependencies>
+	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -35,11 +35,11 @@
 			<optional>true</optional>
 		</dependency>
 
-	<!--	<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
--->
+
 
 
 		<dependency>
@@ -47,17 +47,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
+			<scope>runtime</scope> </dependency> -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.10</version><!--$NO-MVN-MAN-VER$-->
+			<version>1.10</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.2</version><!--$NO-MVN-MAN-VER$-->
+			<version>1.18.2</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -86,8 +88,11 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.14</version><!--$NO-MVN-MAN-VER$-->
+			<version>8.0.14</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
+
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<scope>runtime</scope> </dependency> -->
 
 
 		<dependency>
@@ -111,25 +116,33 @@
 		</dependency>
 
 
-		
-		
-		
+
+
+
 		<!-- Swagger start -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-		
+
+		<!-- <dependency> <groupId>io.springfox</groupId> <artifactId>springfox-swagger2</artifactId> 
+			<version>2.6.0</version> </dependency> -->
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
 
 		<!-- Swagger end -->
-		
-		
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -137,8 +150,8 @@
 		</dependency>
 
 
-		 
-		
+
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -179,162 +192,135 @@
 		</dependency>
 		<!-- Eureka Dependency Start -->
 
-	<!--	<dependency>		
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>			
-		</dependency>
-		
-		
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> 
+			</dependency> <dependency> <groupId>commons-lang</groupId> <artifactId>commons-lang</artifactId> 
+			<version>2.6</version> </dependency> <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-actuator</artifactId> </dependency> -->
+
+		<!-- Eureka Dependency End -->
+
+
+		<!-- Common jar for all child micro services start -->
+		<!-- <dependency> <groupId>com.oasys</groupId> <artifactId>common</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> <classifier>common</classifier> </dependency> -->
+
+
+		<!-- <dependency> <groupId>com.oasys</groupId> <artifactId>common</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> </dependency> -->
+		<!-- Common jar for all child micro services end -->
+
+
+		<!-- Config Server Client Configuration Start -->
 		<dependency>
-		
-			<groupId>commons-lang</groupId>
-			
-			<artifactId>commons-lang</artifactId>
-			
-			<version>2.6</version>
-		
-		</dependency>
-		
-		
-		<dependency>
-		
-			<groupId>org.springframework.boot</groupId>
-			
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		
-		</dependency> -->
 
-<!-- Eureka Dependency End -->
-
-
-<!-- Common jar for all child micro services start -->
-<!--  <dependency>
-<groupId>com.oasys</groupId>
-<artifactId>common</artifactId>
-<version>0.0.1-SNAPSHOT</version>
-<classifier>common</classifier>
-</dependency> -->
-
-
- <!-- <dependency>
-<groupId>com.oasys</groupId>
-<artifactId>common</artifactId>
-<version>0.0.1-SNAPSHOT</version>
-</dependency>   -->
-<!-- Common jar for all child micro services end -->
-
-
-			<!-- Config Server Client Configuration Start -->
-			<dependency>
-			
 			<groupId>org.springframework.cloud</groupId>
-			
+
 			<artifactId>spring-cloud-starter-config</artifactId>
-			
+
 			<version>2.0.2.RELEASE</version>
-			
-			</dependency>
-			
-			<!-- Config Server Client Configuration End -->
-			
-			
-			<!-- Ribbon Loan balancer Configuration Start -->
-			
-			
-			
-			<dependency>
-			
-				<groupId>org.springframework.cloud</groupId>
-				
-				<artifactId>spring-cloud-starter-ribbon</artifactId>
-				
-				<version>1.4.7.RELEASE</version>
-			
-			</dependency>
+
+		</dependency>
+
+		<!-- Config Server Client Configuration End -->
+
+
+		<!-- Ribbon Loan balancer Configuration Start -->
+
+
+
+		<dependency>
+
+			<groupId>org.springframework.cloud</groupId>
+
+			<artifactId>spring-cloud-starter-ribbon</artifactId>
+
+			<version>1.4.7.RELEASE</version>
+
+		</dependency>
 
 		<!-- Ribbon Loan balancer Configuration END -->
-			<!-- Admin server client start -->
+		<!-- Admin server client start -->
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 			<version>2.2.2</version>
 		</dependency>
 		<!-- Admin server client end -->
-		<dependency> 
-		    <groupId>net.logstash.logback</groupId> 
-		    <artifactId>logstash-logback-encoder</artifactId> 
-		    <version>4.11</version> 
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>4.11</version>
 		</dependency>
-         <dependency>
+		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jasypt</groupId>
 			<artifactId>jasypt</artifactId>
 			<version>1.9.0</version>
 		</dependency>
-		
-			<dependency>
+
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-envers</artifactId>
 		</dependency>
 
-			<dependency>
-				<groupId>javax.mail</groupId>
-				<artifactId>javax.mail-api</artifactId>
-				<version>1.6.2</version>
-			</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
-			<dependency>
-				<groupId>com.sun.mail</groupId>
-				<artifactId>javax.mail</artifactId>
-				<version>1.6.2</version>
-			</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-integration</artifactId>
-			</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-integration</artifactId>
+		</dependency>
 
-			<dependency>
-				<groupId>org.springframework.integration</groupId>
-				<artifactId>spring-integration-mail</artifactId>
-			</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
+		</dependency>
 
-			 <dependency>
-		      <groupId>org.springframework.boot</groupId>
-		      <artifactId>spring-boot-starter-data-redis</artifactId>
-		    </dependency>
-		    <dependency>
-				<groupId>redis.clients</groupId>
-				<artifactId>jedis</artifactId>
-			</dependency>  
-			
-		 <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>        
-         <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.13</version>
-    </dependency>
-    <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20210307</version>
-    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
 
-	<!-- Eureka Dependency Start -->
-	
-	
-	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version>
+		</dependency>
 
-</dependencies>
+		<!-- Eureka Dependency Start -->
+
+
+
+
+	</dependencies>
 
 	<dependencyManagement>
 
@@ -343,21 +329,21 @@
 
 
 			<dependency>
-	
+
 				<groupId>org.springframework.cloud</groupId>
-				
+
 				<artifactId>spring-cloud-dependencies</artifactId>
-				
+
 				<version>Hoxton.SR3</version>
-				
+
 				<type>pom</type>
-				
+
 				<scope>import</scope>
-				
+
 			</dependency>
-			
+
 		</dependencies>
-			
+
 	</dependencyManagement>
 
 	<!-- Eureka Dependency End -->
@@ -391,7 +377,7 @@
 						<configuration>
 							<!-- this will get rid of version info from war file name This is 
 								for Eureka server -->
-							<finalName>helpdesk</finalName>
+							<finalName>devarcabs</finalName>
 							<fork>false</fork>
 						</configuration>
 					</plugin>
