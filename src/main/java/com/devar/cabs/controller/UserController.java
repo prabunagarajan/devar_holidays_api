@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import com.devar.cabs.entity.UserEntity;
+import com.devar.cabs.requestDTO.LoginRequestDTO;
 import com.devar.cabs.service.UserService;
 import com.devar.cabs.utility.JwtUtil;
 
@@ -38,19 +39,61 @@ public class UserController {
 
 	    @PostMapping("/signup")
 	    public ResponseEntity<UserEntity> signup(@RequestBody UserEntity user) {
-	    	UserEntity createdUser = userService.createUser(user);
+	        UserEntity createdUser = userService.createUser(user);
 	        return ResponseEntity.ok(createdUser);
 	    }
 
+//	    @PostMapping("/login")
+//	    public ResponseEntity<String> login(@RequestBody String username, String password) {
+//	        Optional<UserEntity> userOpt = userService.findByUsername(username);
+//	        if (userOpt.isPresent()) {
+//	            UserEntity user = userOpt.get();
+//	            if (userService.checkPassword(password, user.getPassword())) {
+//	                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//	                final UserDetails userDetails = userService.loadUserByUsername(username);
+//	                final String jwt = jwtUtil.generateToken(userDetails);
+//	                return ResponseEntity.ok("Bearer " + jwt);
+//	            } else {
+//	                return ResponseEntity.status(401).body("Invalid credentials");
+//	            }
+//	        } else {
+//	            return ResponseEntity.status(404).body("User not found");
+//	        }
+//	    }
+	    
+//	    @PostMapping("/login")
+//	    public ResponseEntity<String> login(@RequestBody LoginRequestDTO loginRequest) {
+//	        String username = loginRequest.getUsername();
+//	        String password = loginRequest.getPassword();
+//	        
+//	        Optional<UserEntity> userOpt = userService.findByUsername(username);
+//	        if (userOpt.isPresent()) {
+//	            UserEntity user = userOpt.get();
+//	            if (userService.checkPassword(password, user.getPassword())) {
+//	                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//	                final UserDetails userDetails = userService.loadUserByUsername(username);
+//	                final String jwt = jwtUtil.generateToken(userDetails);
+//	                return ResponseEntity.ok("Bearer " + jwt);
+//	            } else {
+//	                return ResponseEntity.status(401).body("Invalid credentials");
+//	            }
+//	        } else {
+//	            return ResponseEntity.status(404).body("User not found");
+//	        }
+//	    }
+	    
 	    @PostMapping("/login")
-	    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+	    public ResponseEntity<String> login(@RequestBody LoginRequestDTO loginRequest) {
+	        String username = loginRequest.getUsername();
+	        String password = loginRequest.getPassword();
+	        
 	        Optional<UserEntity> userOpt = userService.findByUsername(username);
 	        if (userOpt.isPresent()) {
-	        	UserEntity user = userOpt.get();
+	            UserEntity user = userOpt.get();
 	            if (userService.checkPassword(password, user.getPassword())) {
 	                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 	                final UserDetails userDetails = userService.loadUserByUsername(username);
-	                final String jwt = jwtUtil.generateToken(userDetails);
+	                final String jwt = jwtUtil.generateToken(userDetails, user);
 	                return ResponseEntity.ok("Bearer " + jwt);
 	            } else {
 	                return ResponseEntity.status(401).body("Invalid credentials");
@@ -59,6 +102,7 @@ public class UserController {
 	            return ResponseEntity.status(404).body("User not found");
 	        }
 	    }
+
 
 	    @GetMapping("/{id}")
 	    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {

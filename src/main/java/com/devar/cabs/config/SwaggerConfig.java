@@ -39,7 +39,7 @@ public class SwaggerConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	public Docket productApi() {
 		final ParameterBuilder aParameterBuilder = new ParameterBuilder();
-		aParameterBuilder.name("X-Authorization").modelRef((ModelReference) new ModelRef("string"))
+		aParameterBuilder.name("Authorization").modelRef((ModelReference) new ModelRef("string"))
 				.parameterType("header").defaultValue("").required(false).build();
 		final List<Parameter> aParameters = new ArrayList<Parameter>();
 		aParameters.add(aParameterBuilder.build());

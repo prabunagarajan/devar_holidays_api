@@ -28,41 +28,44 @@ import com.devar.cabs.utility.JwtRequestFilter;
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
+	  @Autowired
+	    private JwtRequestFilter jwtRequestFilter;
 
-	@Autowired
-	private UserService userService;
+	    @Autowired
+	    private UserService userService;
 
-	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	    @Autowired
+	    private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-	}
+	    @Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+	    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/users/login").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/users/signup").permitAll()
-				.antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll()
-				.anyRequest().authenticated().and().logout().invalidateHttpSession(true).clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+	    @Override
+	    protected void configure(HttpSecurity http) throws Exception {
+	        http.cors().and().csrf().disable()
+	            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+	            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+	            .authorizeRequests()
+	            .antMatchers(HttpMethod.POST, "/api/users/login").permitAll()
+	            .antMatchers(HttpMethod.POST, "/api/users/signup").permitAll()
+	            .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll()
+	            .anyRequest().authenticated().and()
+	            .logout().invalidateHttpSession(true).clearAuthentication(true)
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
 
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-	}
+	        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	    }
 
-	@Override
-	@Bean(BeanIds.AUTHENTICATION_MANAGER)
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+	    @Override
+	    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+	    public AuthenticationManager authenticationManagerBean() throws Exception {
+	        return super.authenticationManagerBean();
+	    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(8);
-	}
+	    @Bean
+	    public PasswordEncoder passwordEncoder() {
+	        return new BCryptPasswordEncoder(8);
+	    }
 }

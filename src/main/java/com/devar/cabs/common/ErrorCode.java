@@ -52,7 +52,7 @@ public interface ErrorCode {
 	public static final Error CONNECTION_ERROR = new Error(501);
 	public static final Error FAILURE_RESPONSE = new Error(500);
 	public static final Error ACCESS_DENIED = new Error(403);
-	public static final Error DEVICE_ALREADY_EXIST = new Error(6);
+	public static final Error ALREADY_EXIST = new Error(6);
 	public static final Error ALREADY_VERIFIED = new Error(205);
 	
 

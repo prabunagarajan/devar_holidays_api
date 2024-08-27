@@ -51,8 +51,10 @@ public class DriverDetailsServiceImpl implements DriverDetailsService {
 		Optional<DriverDetailsEntity> driveraadhar = driverDetailsRepository
 				.findByAadharNumber(driverDetailsRequestDTO.getAadharNumber());
 		if (driveraadhar.isPresent()) {
-			return Library.getFailResponseCode(ErrorCode.INVALID_DATA.getErrorCode(),
-					ResponseMessageConstant.ALREADY_EXISTS.getMessage(new Object[] { "AADHAR" }));
+//			return Library.getFailResponseCode(ErrorCode.INVALID_DATA.getErrorCode(),
+//					ResponseMessageConstant.ALREADY_EXISTS.getMessage(new Object[] { "AADHAR" }));
+			return Library.getFailResponseCode(ErrorCode.ALREADY_EXIST.getErrorCode(),
+					"This Aadhar Number is Already Exist");
 		} else {
 			DriverDetailsEntity driverDetailsEntity = new DriverDetailsEntity();
 			driverDetailsEntity.setAadharNumber(driverDetailsRequestDTO.getAadharNumber());

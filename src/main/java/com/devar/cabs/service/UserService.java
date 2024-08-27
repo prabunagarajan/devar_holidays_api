@@ -34,17 +34,15 @@ public class UserService implements UserDetailsService{
 	    public boolean checkPassword(String rawPassword, String encodedPassword) {
 	        return passwordEncoder.matches(rawPassword, encodedPassword);
 	    }
-	    
 
 	    @Override
 	    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	    	UserEntity user = userRepository.findByUsername(username).orElseThrow(() ->
+	        UserEntity user = userRepository.findByUsername(username).orElseThrow(() ->
 	                new UsernameNotFoundException("User not found with username: " + username));
 	        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
 	    }
 
-		public Optional<UserEntity> findById(Long id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+	    public Optional<UserEntity> findById(Long id) {
+	        return userRepository.findById(id);
+	    }
 }
