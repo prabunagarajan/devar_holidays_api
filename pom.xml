@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devar</groupId>
-	<artifactId>DeverCabs</artifactId>
+	<artifactId>DevarCabs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DeverCabs</name>
+	<name>DevarCabs</name>
 	<description>project for Devar Cabs</description>
 
 
@@ -381,7 +381,7 @@
 						<configuration>
 							<!-- this will get rid of version info from war file name This is 
 								for Eureka server -->
-							<finalName>devarcabs</finalName>
+							<finalName>DevarCabs</finalName>
 							<fork>false</fork>
 						</configuration>
 					</plugin>
